@@ -36,12 +36,21 @@ class UsersController extends Controller
     public function update(User $user, Request $request){
         $this->validate($request,[
            'name' => 'required|max:50',
-            'password' => 'required|min:6'
+            'password' => 'nullable|min:6'
         ]);
-        $user->update([
-            'name' => $request->name,
-            'password' => bcrypt($request->password),
-        ]);
+        $data = [];
+        $count = $user->where('name', $request->name)->count();
+        if($count == 0){
+            $data['name'] = $request->name;
+        }
+
+        if($request->password){
+            $data['passowrd'] = $request->password;
+        }
+        if($data){
+            $user->update($data);
+        }
+        session()->flash('success', "个人资料更新成功");
         return redirect()->route('users.show', $user->id);
     }
 }
