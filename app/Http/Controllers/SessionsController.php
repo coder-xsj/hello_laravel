@@ -7,6 +7,13 @@ use Illuminate\Http\Request;
 class SessionsController extends Controller
 {
     //
+    public function __construct(){
+        // 让未登录用户只能访问登录和注册页面
+        $this->middleware('guest', [
+            'only' => ['create', 'signup'],
+        ]);
+    }
+
     public function create(){
         return view('sessions.create');
     }
@@ -18,7 +25,8 @@ class SessionsController extends Controller
 //            dd($auth);
             if(Auth::attempt($auth, $request->has('remember'))){
                 session()->flash('success', '欢迎回来');
-                return redirect()->route('users.show', [Auth::user()]);
+                $fallback = route('users.show', [Auth::user()]);
+                return redirect()->intended($fallback);
             } else {
                 session()->flash('danger', '很抱歉，您的邮箱和密码不匹配');
                 return redirect()->back()->withInput();  //返回上一个路由，并且数据和{{ old('email') }} 对应
