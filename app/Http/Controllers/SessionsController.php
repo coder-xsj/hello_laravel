@@ -24,16 +24,11 @@ class SessionsController extends Controller
                 return redirect()->back()->withInput();  //返回上一个路由，并且数据和{{ old('email') }} 对应
             }
     }
-    
-    public function logout(){
-        Auth::logout();
-        session()->flash('success', '您已成功退出');
-        return redirect('login');
-    }
 
     public function logout(){
         Auth::logout();
         session()->flash('success', '您已成功退出');
         return redirect('login');
     }
+
 }
