@@ -6,6 +6,7 @@ use http\Env\Request;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Str;
 
 class User extends Authenticatable
 {
@@ -44,5 +45,13 @@ class User extends Authenticatable
         return "http://www.gravatar.com/avatar/$hash?s=$size"; //生成随机头像
     }
 
+    public static function boot(){
+        parent::boot();
+        // 被创建前生成令牌
+        // creating 用于监听模型被创建之前的事件
+        static::creating(function ($user){
+            $user->activation_token = Str::random(10);
+        });
+    }
 
 }
