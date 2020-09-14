@@ -22,8 +22,12 @@ class UsersController extends Controller
     public function create(){
         return view('users.create');
     }
+    // 分页显示微博
     public function show(User $user){
-        return view('users.show', compact('user'));
+        $statuses = $user->statuses()
+            ->orderBy('created_at', 'desc')
+            ->paginate(10);
+        return view('users.show', compact('user', 'statuses'));
     }
     // 用户注册
     public function store(Request $request){
@@ -102,6 +106,7 @@ class UsersController extends Controller
         session()->flash('success', '用户删除成功');
         return back();
     }
+
 
 
 }

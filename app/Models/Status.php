@@ -8,6 +8,7 @@ class Status extends Model
 {
     //
     public function user(){
+        // 可以理解为 Status（文章） 属于 User
         return $this->belongsTo(User::class);   //指明一对多关系
     }
 }

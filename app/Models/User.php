@@ -55,6 +55,7 @@ class User extends Authenticatable
     }
 
     public function statuses(){
+        // 可以理解为 一个User有多个Status（文章）
         return $this->hasMany(Status::class);
     }
 
