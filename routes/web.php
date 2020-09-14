@@ -39,3 +39,6 @@ Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm
 // 执行密码更新操作
 Route::post('password/reset', 'Auth\ResetPasswordController@reset')->name('password.update');
 
+// 这一块是删除微博和发布微博的路由
+Route::resource('statuses', 'StatusesController', ['only' => ['store', 'destroy']]);
+
