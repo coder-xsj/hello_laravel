@@ -28,6 +28,6 @@ class CreateFollowersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('follwoers');
+        Schema::dropIfExists('followers');
     }
 }
