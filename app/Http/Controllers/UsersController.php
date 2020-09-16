@@ -46,7 +46,7 @@ class UsersController extends Controller
         return redirect('/'); //
 
     }
-    // 测试发送邮箱方法
+    // 发送邮箱方法
     protected function  sendEmailConfirmationTo($user){
             $view = 'emails.confirm';
             $data = compact('user');
@@ -100,13 +100,25 @@ class UsersController extends Controller
         session()->flash('success', "个人资料更新成功");
         return redirect()->route('users.show', $user->id);
     }
+    // 删除用户
     public function destroy(User $user){
         $this->authorize('destroy', $user);
         $user->delete();
         session()->flash('success', '用户删除成功');
         return back();
     }
-
+    // 显示关注的人
+    public function followings(User $user){
+        $users = $user->followings()->paginate(15);
+        $title = $user->name . '关注的人';
+        return view('users.show_follow', compact('users', 'title'));
+    }
+    // 显示粉丝
+    public function followers(User $user){
+        $users = $user->followers()->paginate(15);
+        $title = $user->name . '关注的人';
+        return view('users.show_follow', compact('users', 'title'));
+    }
 
 
 }
