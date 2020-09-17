@@ -11,7 +11,7 @@ return [
     | as the size rules. Feel free to tweak each of these messages here.
     |
     */
-
+    'captcha'         => ':attributes 不能为空',
     'accepted'        => '您必须接受 :attribute。',
     'active_url'      => ':attribute 不是一个有效的网址。',
     'after'           => ':attribute 必须要晚于 :date。',
@@ -131,6 +131,7 @@ return [
     'custom' => [
         'attribute-name' => [
             'rule-name' => 'custom-message',
+            'captcha' => '验证码不能为空'
 
         ],
     ],
@@ -147,6 +148,7 @@ return [
     */
 
     'attributes' => [
+        'captcha'               => '验证码',
         'name'                  => '名称',
         'username'              => '用户名',
         'email'                 => '邮箱',

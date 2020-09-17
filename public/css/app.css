@@ -11001,3 +11001,12 @@ section.user_info h1 {
   color: black;
 }
 
+.captcha {
+  display: inline-block;
+}
+
+.captcha-input {
+  display: inline-block;
+  width: 60%;
+}
+

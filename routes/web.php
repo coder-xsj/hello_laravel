@@ -1,5 +1,7 @@
 <?php
 
+use Gregwar\Captcha\CaptchaBuilder;
+use Gregwar\Captcha\PhraseBuilder;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -50,3 +52,27 @@ Route::get('/users/{user}/followers', 'UsersController@followers')->name('users.
 Route::post('/users/followers/{user}', 'FollowersController@store')->name('followers.store');
 // 取关
 Route::delete('/users/followers/{user}', 'FollowersController@destroy')->name('followers.destroy');
+
+// 测试图片路由
+//Route::get('img/ajax', '')
+//Route::get('img/test', function () {
+//    //自定义验证码长度，和内容范围
+//    $phraseBuilder = new PhraseBuilder(4);
+//    $builder = new CaptchaBuilder(null, $phraseBuilder); //参数传给cap构造类
+//    $captcha = $builder->build();   //生成图片验证码
+//    $captcha_content = $captcha->getPhrase();   // 获取图片验证码中的内容
+//    // 将数据存储到缓存中，时间为2分钟
+//    Cache::put('captcha_content', $captcha_content, 2);
+//    // 从缓存中取出
+////        $captcha_cache_content = Cache::get('captcha');
+////        dd($captcha_cache_content);
+//    $captcha->save('out.jpg');
+//    $captcha_base64_content = $captcha->inline();  // 转化成base64
+////    return [$captcha_content, $captcha_cache_content];
+////    info($captcha_base64_content);  //写入log
+//    return [
+//        'img' => $captcha_base64_content,
+//    ];
+//})->name('getImg');
+
+Route::get('img/captcha', 'SessionsController@getCaptcha')->name('getImg');

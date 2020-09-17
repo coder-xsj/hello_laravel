@@ -14,5 +14,6 @@ const mix = require('laravel-mix');
 mix.js('resources/js/app.js', 'public/js')
     .sass('resources/sass/app.scss', 'public/css').version();
 
+mix.js('resources/js/captcha.js', 'public/js');
 //第二个参数自定义生成的js文件的输出目录
 //sass方法可以让你将 Sass 文件编译为 CSS，你可以使用第二个参数来自定义生成的 CSS 的输出目录

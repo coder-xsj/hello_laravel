@@ -14,5 +14,24 @@
         </div>
     </div>
     <script src="{{ mix('js/app.js') }}"></script>
+    <script src="{{ mix('js/captcha.js') }}"></script>
+    <script !src="">
+        function getCaptcha() {
+            // alert('已经获取到验证码');
+            $.ajax({
+                type: 'get',
+                url: "{{ route('getImg') }}",
+                dataType: 'json',
+                success: function (result) {
+                    $('.captcha').attr("src", result.img); //返回验证码图片
+                }
+            });
+        }
+        // DOM就绪时执行
+        $('.captcha').ready(function () {
+            getCaptcha();
+        })
+
+    </script>
 </body>
 </html>

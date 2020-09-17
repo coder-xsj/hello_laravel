@@ -5,12 +5,12 @@
     <div class="offset-md-2 col-md-8">
         <div class="card ">
             <div class="card-header">
-                <h5>登录</h5>
+                <h5 >登录 </h5>
             </div>
             <div class="card-body">
                 @include('shared._errors')
 
-                <form method="POST" action="{{ route('login') }}">
+                <form method="POST" action="{{ route('login') }}" class=".form-inline">
                     {{ csrf_field() }}
 
                     <div class="form-group">
@@ -23,11 +23,19 @@
                         <input type="password" name="password" class="form-control" value="{{ old('password') }}">
                     </div>
                     <div class="form-group">
+                        <label for="captcha">验证码：</label>
+                        <br>
+                        <input type="text" name="captcha" class="form-control captcha-input" value="">
+                        <img src="" class="img-rounded captcha" alt="Responsive image" onclick="getCaptcha()" >
+                    </div>
+                    <div class="form-group">
                         <div class="form-check">
                             <input type="checkbox" class="form-check-input" name="remember" id="exampleCheck1">
-                            <label class="form-check-label" for="exampleCheck1">记住我</label>
+                            <label class="form-check-label" for="exampleCheck1" >记住我</label>
+
                         </div>
                     </div>
+
                     <button type="submit" class="btn btn-primary">登录</button>
                 </form>
 
