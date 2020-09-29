@@ -23,7 +23,13 @@
                 url: "{{ route('getImg') }}",
                 dataType: 'json',
                 success: function (result) {
-                    $('.captcha').attr("src", result.img); //返回验证码图片
+                    var img = $(`<img src="" class="img-rounded captcha" alt="Responsive image" onclick="getCaptcha()" >
+                `);
+                    img.attr("src", result.img); //设置验证码图片
+                    $('#captcha-fa').append(img);
+                    // 找到最后一个删除前面的
+                    $('#captcha-fa>img').last().prevAll('img').remove();
+
                 }
             });
         }

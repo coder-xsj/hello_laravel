@@ -22,11 +22,11 @@
                         <label for="password">密码（<a href="{{ route('password.request') }}">忘记密码</a>）：</label>
                         <input type="password" name="password" class="form-control" value="{{ old('password') }}">
                     </div>
-                    <div class="form-group">
+                    <div class="form-group" id="captcha-fa">
                         <label for="captcha">验证码：</label>
                         <br>
                         <input type="text" name="captcha" class="form-control captcha-input" value="">
-                        <img src="" class="img-rounded captcha" alt="Responsive image" onclick="getCaptcha()" >
+{{--                        <img src="" class="img-rounded captcha" alt="Responsive image" onclick="getCaptcha()" >--}}
                     </div>
                     <div class="form-group">
                         <div class="form-check">
